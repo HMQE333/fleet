@@ -1,0 +1,11 @@
+<!doctype html><html><head><title>Write a post</title></head><body>
+<h1>Write a post</h1>
+<div id="body" contenteditable="true" aria-label="Post body" style="border:1px solid #888;min-height:60px;padding:4px"></div>
+<button id="preview">Preview</button>
+<p id="out"></p>
+<script>
+document.getElementById('preview').addEventListener('click', () => {
+  document.getElementById('out').textContent = 'Preview: ' + document.getElementById('body').innerText.trim();
+});
+</script>
+</body></html>

@@ -1,0 +1,22 @@
+<!doctype html><html><head><title>Create a profile</title></head><body>
+<h1>Create a profile</h1>
+<form id="f">
+  <label>Full name <input name="name" type="text"></label>
+  <label>Email <input name="email" type="email"></label>
+  <label>Country
+    <select name="country"><option value="">Choose…</option><option value="pl">Poland</option><option value="de">Germany</option></select>
+  </label>
+  <label><input name="newsletter" type="checkbox"> Send me the newsletter</label>
+  <button type="submit">Create profile</button>
+</form>
+<div id="out"></div>
+<script>
+document.getElementById('f').addEventListener('submit', e => {
+  e.preventDefault();
+  const d = new FormData(e.target);
+  const country = e.target.country.options[e.target.country.selectedIndex].text;
+  document.getElementById('out').textContent =
+    `Profile created for ${d.get('name')} (${d.get('email')}) in ${country}; newsletter: ${d.get('newsletter') ? 'yes' : 'no'}`;
+});
+</script>
+</body></html>

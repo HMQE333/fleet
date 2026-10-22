@@ -1,0 +1,44 @@
+[project]
+name = "fleet"
+version = "0.1.0"
+description = "Fleet: an agentic browser that plans once, executes cheaply, records what worked and replays it; voice-driven."
+authors = [
+    { name = "hmqe33", email = "jan.atosz333@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "asyncpg>=0.31.0",
+    "browser-use>=0.13.10",
+    "cryptography>=45",
+    "fastapi>=0.141.1",
+    "httpx>=0.28.1",
+    "keyring>=25.7.0",
+    "pydantic-settings>=2.15.0",
+    "scrapling[fetchers]>=0.4.6",
+    "tzdata>=2026.4",
+    "uvicorn[standard]>=0.53.0",
+]
+
+[project.optional-dependencies]
+# FLEET_DATABASE_URL=embedded: Fleet runs its own Postgres, no service to install.
+embedded = ["pgserver>=0.1.4"]
+
+[project.scripts]
+fleet = "fleet:main"
+
+[build-system]
+requires = ["uv_build>=0.11.19,<0.12.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "pytest-asyncio>=1.4.0",
+    "ruff>=0.14",
+    "pgserver>=0.1.4",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+testpaths = ["tests"]

@@ -1,0 +1,31 @@
+<!doctype html>
+<html><head><title>Sign in</title></head><body>
+<!-- A two-step login on ONE page: the email first, then the password form replaces it (like most single-page apps). -->
+<div id="app">
+  <h1>Sign in</h1>
+  <form id="f1">
+    <label>Email <input name="email" type="email" autocomplete="username"></label>
+    <button type="submit">Next</button>
+  </form>
+  <p id="msg"></p>
+</div>
+<script>
+const app = document.getElementById('app');
+document.getElementById('f1').addEventListener('submit', e => {
+  e.preventDefault();
+  const email = e.target.email.value;
+  if (email !== 'alice@example.test') { document.getElementById('msg').textContent = "Couldn't find your account"; return; }
+  app.innerHTML = '<h1>Sign in</h1><p id="who"></p><form id="f2"><label>Password <input name="password" type="password" ' +
+    'autocomplete="current-password"></label><button type="submit">Sign in</button></form><p id="msg2"></p>';
+  document.getElementById('who').textContent = email;
+  document.getElementById('f2').addEventListener('submit', ev => {
+    ev.preventDefault();
+    if (ev.target.password.value === 'correct horse battery') {
+      document.body.innerHTML = '<h1>Welcome back, alice</h1><p>You are logged in.</p>';
+    } else {
+      document.getElementById('msg2').textContent = 'Wrong password';
+    }
+  });
+});
+</script>
+</body></html>

@@ -1,0 +1,33 @@
+<!doctype html>
+<html><head><title>Login</title></head><body>
+<!-- the shape of news.ycombinator.com/login: a login form and a sign-up form on one page -->
+<b>Login</b><br><br>
+<form id="in" action="login">
+  <table>
+    <tr><td>username:</td><td><input type="text" name="acct" autocomplete="username"></td></tr>
+    <tr><td>password:</td><td><input type="password" name="pw" autocomplete="current-password"></td></tr>
+  </table><br>
+  <input type="submit" value="login">
+</form>
+<br>
+<b>Create Account</b><br><br>
+<form id="up" action="login">
+  <table>
+    <tr><td>username:</td><td><input type="text" name="acct" autocomplete="username"></td></tr>
+    <tr><td>password:</td><td><input type="password" name="pw" autocomplete="new-password"></td></tr>
+  </table><br>
+  <input type="submit" value="create account">
+</form>
+<p id="msg"></p>
+<script>
+document.getElementById('in').addEventListener('submit', e => {
+  e.preventDefault();
+  if (e.target.acct.value === 'alice@example.test' && e.target.pw.value === 'correct horse battery') {
+    document.body.innerHTML = '<h1>Welcome back, alice</h1><p>You are logged in.</p>';
+  } else {
+    document.getElementById('msg').textContent = 'Bad login.';
+  }
+});
+document.getElementById('up').addEventListener('submit', e => { e.preventDefault(); document.getElementById('msg').textContent = 'SIGN-UP SUBMITTED'; });
+</script>
+</body></html>

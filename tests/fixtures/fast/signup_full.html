@@ -1,0 +1,33 @@
+<!doctype html>
+<html><head><title>Join us</title></head><body>
+<!-- ?mode=ok (default) | verify | reject. The page reports what it received, so tests can check it. -->
+<h1>Create your account</h1>
+<form id="f" novalidate>
+  <label>Email address <input name="email" type="email" required></label>
+  <label>Username <input name="username" autocomplete="username" required></label>
+  <label>Password <input name="password" type="password" autocomplete="new-password" required></label>
+  <label>Confirm password <input name="confirm" type="password" required></label>
+  <label><input type="checkbox" name="terms" required> I agree to the Terms of Service and Privacy Policy</label>
+  <label><input type="checkbox" name="newsletter"> Send me the newsletter and special offers</label>
+  <button type="submit">Create account</button>
+</form>
+<p id="msg"></p>
+<script>
+  const mode = new URLSearchParams(location.search).get('mode') || 'ok';
+  const f = document.getElementById('f');
+  f.addEventListener('submit', e => {
+    e.preventDefault();
+    const v = n => f.elements[n].value;
+    if (mode === 'reject' || !f.elements.terms.checked || v('password') !== v('confirm')) {
+      document.getElementById('msg').textContent = 'That username is taken.';
+      return;
+    }
+    const got = `email=${v('email')} username=${v('username')} pw=${v('password')} ` +
+      `confirm-match=${v('password') === v('confirm')} terms=${f.elements.terms.checked} ` +
+      `newsletter=${f.elements.newsletter.checked}`;
+    document.body.innerHTML = mode === 'verify'
+      ? `<h1>Check your inbox</h1><p>We sent a confirmation link to ${v('email')}. Verify your email to continue.</p><pre>${got}</pre>`
+      : `<h1>Welcome, ${v('username')}!</h1><p>Your account was created.</p><pre>${got}</pre>`;
+  });
+</script>
+</body></html>

@@ -1,0 +1,8 @@
+<!doctype html><html><head><title>Results</title></head><body>
+<h1 id="h"></h1>
+<ul>
+  <li><a href="product.html?id=1">Raspberry Pi 5 8GB - 399 zl</a></li>
+  <li><a href="product.html?id=2">Raspberry Pi 5 4GB - 299 zl</a></li>
+</ul>
+<script>document.getElementById('h').textContent = 'Results for ' + new URLSearchParams(location.search).get('q');</script>
+</body></html>

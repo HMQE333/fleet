@@ -1,0 +1,20 @@
+<!doctype html>
+<html><head><title>Members</title></head><body>
+<header><input name="q" type="search" placeholder="Search the site"></header>
+<main>
+  <h2>Members area</h2>
+  <div>
+    <input name="username" placeholder="Username">
+    <input name="pw" type="password" placeholder="Password">
+    <button id="go">Sign in</button>
+  </div>
+  <p id="msg"></p>
+</main>
+<script>
+document.getElementById('go').addEventListener('click', () => {
+  const u = document.querySelector('[name=username]').value, p = document.querySelector('[name=pw]').value;
+  document.body.innerHTML = (u === 'alice@example.test' && p === 'correct horse battery')
+    ? '<h1>Welcome back, alice</h1>' : '<h1>Members area</h1><p>Sorry, no.</p>';
+});
+</script>
+</body></html>

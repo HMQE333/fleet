@@ -1,0 +1,10 @@
+<!doctype html><html><head><title>Reports</title></head><body>
+<h1>Reports</h1>
+<p>The report opens in a new tab; the second link opens it on another host (the test passes it as ?other=).</p>
+<a href="report.html" target="_blank">Open the report in a new tab</a>
+<a id="other" href="report.html" target="_blank">Open the report elsewhere</a>
+<script>
+const other = new URLSearchParams(location.search).get('other');
+if (other) document.getElementById('other').href = other + '/report.html';
+</script>
+</body></html>

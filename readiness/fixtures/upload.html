@@ -1,0 +1,12 @@
+<!doctype html><html><head><title>Attach a file</title></head><body>
+<h1>Attach a file</h1>
+<label>Attachment <input id="file" type="file"></label>
+<button id="attach">Attach</button>
+<p id="out"></p>
+<script>
+document.getElementById('attach').addEventListener('click', () => {
+  const f = document.getElementById('file').files[0];
+  document.getElementById('out').textContent = f ? 'Attached: ' + f.name : 'Nothing attached';
+});
+</script>
+</body></html>

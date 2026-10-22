@@ -1,0 +1,11 @@
+<!doctype html><html><head><title>Widget page</title></head><body>
+<h1>A page with two embedded widgets</h1>
+<p>The first frame is ours; the second comes from another origin (the test passes its address as ?other=).</p>
+<iframe src="widget_inner.html" title="Widget" style="width:400px;height:160px;border:2px solid #888"></iframe>
+<iframe id="other" title="Foreign widget" style="width:400px;height:160px;border:2px solid #888"></iframe>
+<p id="out"></p>
+<script>
+const other = new URLSearchParams(location.search).get('other');
+if (other) document.getElementById('other').src = other + '/widget_inner.html';
+</script>
+</body></html>

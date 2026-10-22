@@ -1,0 +1,21 @@
+<!doctype html>
+<html><head><title>Sign in</title></head><body>
+<h1>Welcome to Test Shop</h1>
+<form id="f">
+  <label>Email <input name="email" type="email" autocomplete="username"></label>
+  <label>Password <input name="password" type="password" autocomplete="current-password"></label>
+  <button type="submit">Log in</button>
+  <p>No account yet? <a href="signup.html">Sign up</a></p>
+</form>
+<p id="msg"></p>
+<script>
+document.getElementById('f').addEventListener('submit', e => {
+  e.preventDefault();
+  if (e.target.email.value === 'alice@example.test' && e.target.password.value === 'correct horse battery') {
+    document.body.innerHTML = '<h1>Welcome back, alice</h1><p>You are logged in.</p>';
+  } else {
+    document.getElementById('msg').textContent = 'Wrong email or password';
+  }
+});
+</script>
+</body></html>

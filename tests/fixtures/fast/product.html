@@ -1,0 +1,13 @@
+<!doctype html><html><head><title>Product</title></head><body>
+<h1 id="name"></h1>
+<p id="price"></p>
+<p id="stock">In stock, ships today.</p>
+<a href="results.html">Back to results</a>
+<script>
+  const items = {"1": ["Raspberry Pi 5 8GB", "399 zl"], "2": ["Raspberry Pi 5 4GB", "299 zl"]};
+  const [name, price] = items[new URLSearchParams(location.search).get('id')] || ["Unknown product", "-"];
+  document.title = name;
+  document.getElementById('name').textContent = name;
+  document.getElementById('price').textContent = 'Price: ' + price;
+</script>
+</body></html>
